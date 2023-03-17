@@ -1,5 +1,7 @@
 package www.smktelkom.example.myapplication.Menu;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Menu {
@@ -16,7 +18,7 @@ public class Menu {
     @SerializedName("harga")
     private String harga;
 
-    public Menu(String namaMenu, String jenis, String deskripsi, String gambar, String harga, int id_menu){
+    public Menu(String namaMenu, String jenis, String deskripsi, String gambar, String harga, @Nullable int id_menu){
         this.namaMenu = namaMenu;
         this.jenis = jenis;
         this.deskripsi = deskripsi;

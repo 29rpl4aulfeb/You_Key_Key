@@ -13,6 +13,9 @@ public class DetailTransaksiModel {
     @SerializedName("id_meja")
     private Integer idMeja;
 
+    @SerializedName("id_transaksi")
+    private Integer idTransaksi;
+
     @SerializedName("message")
     private String message;
 
@@ -41,6 +44,14 @@ public class DetailTransaksiModel {
 
     public Integer getIdMeja() {
         return idMeja;
+    }
+
+    public Integer getIdTransaksi() {
+        return idTransaksi;
+    }
+
+    public void setIdTransaksi(Integer idTransaksi) {
+        this.idTransaksi = idTransaksi;
     }
 
     public void setIdMeja(Integer idMeja) {

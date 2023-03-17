@@ -12,17 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".IniBaruTransaksi.Checkout"
+            android:name=".Menu.TambahMenu"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Meja.MejaListAdapter"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".IniBaruTransaksi.Checkout"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Meja.MejaListAdapter" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Meja.MejaActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Transaksi.TransaksiListAdapter"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Transaksi.TransaksiListAdapter" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Transaksi.TransaksiActivity"
             android:exported="true" />

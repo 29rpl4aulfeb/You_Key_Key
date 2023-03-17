@@ -19,7 +19,7 @@ import www.smktelkom.example.myapplication.Meja.MejaValue;
 import www.smktelkom.example.myapplication.Menu.Menu;
 
 public class MenuRepository {
-//    private static MutableLiveData<Menu> selectedmenu = new MutableLiveData<>();
+    private static MutableLiveData<Menu> addMenu = new MutableLiveData<>();
     public static MutableLiveData<DetailTransaksiModel> detailTransaksi = new MutableLiveData<>();
     public static MutableLiveData<ArrayList<Menu>> keranjang = new MutableLiveData<>(new ArrayList<>());
     public static MutableLiveData<List<Meja>> listMeja = new MutableLiveData<>(new ArrayList<>());
@@ -60,6 +60,24 @@ public class MenuRepository {
         });
 
         return detailTransaksi;
+    }
+
+    public static LiveData<Menu> addMenu(String token, Menu menuModel) {
+        Call<Menu> call = ApiClient.getuserService().addMenu("Bearer "+token, menuModel.getNamaMenu(), menuModel.getHarga(), menuModel.getJenis(), menuModel.getDeskripsi());
+        call.enqueue(new Callback<Menu>() {
+            @Override
+            public void onResponse(Call<Menu> call, Response<Menu> response) {
+                if(response.isSuccessful()){
+                    addMenu.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Menu> call, Throwable t) {
+
+            }
+        });
+        return addMenu;
     }
 
 //    public static LiveData<ListMenuResponse> getAllMenus(String token) {

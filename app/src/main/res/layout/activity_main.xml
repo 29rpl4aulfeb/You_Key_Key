@@ -158,6 +158,7 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btnAddMenu"
             android:layout_width="150dp"
             android:layout_height="190dp"
             android:layout_margin="10dp"
@@ -181,7 +182,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Logout"
+                    android:text="Tambah Menu"
                     android:textColor="@color/teal_700"
                     android:textStyle="bold" />
             </LinearLayout>

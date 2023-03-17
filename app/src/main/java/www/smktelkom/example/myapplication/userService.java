@@ -12,6 +12,7 @@ import retrofit2.http.Path;
 import www.smktelkom.example.myapplication.IniBaruTransaksi.Checkout;
 import www.smktelkom.example.myapplication.IniBaruTransaksi.DetailTransaksiModel;
 import www.smktelkom.example.myapplication.Meja.MejaValue;
+import www.smktelkom.example.myapplication.Menu.Menu;
 import www.smktelkom.example.myapplication.Menu.MenuValue;
 import www.smktelkom.example.myapplication.Transaksi.Transaksi;
 import www.smktelkom.example.myapplication.Transaksi.TransaksiValue;
@@ -73,5 +74,15 @@ public interface userService {
            @Field("barang8") Integer barang8,
            @Field("barang9") Integer barang9,
            @Field("barang10") Integer barang10
+   );
+
+   @FormUrlEncoded
+   @POST("menu")
+   Call<Menu> addMenu(
+           @Header("Authorization") String bearerToken,
+           @Field("nama_menu") String nama_menu,
+           @Field("harga") String harga,
+           @Field("jenis") String kategori,
+           @Field("deskripsi") String gambar
    );
 }
