@@ -17,6 +17,7 @@ import www.smktelkom.example.myapplication.databinding.ActivityTambahMenuBinding
 public class TambahMenu extends AppCompatActivity {
 
     private ActivityTambahMenuBinding binding;
+    private String token;
 //    private final Observer<Menu> selectedMenuObserver = new Observer<Menu>() {
 //        @Override
 //        public void onChanged(Menu menu) {
@@ -28,6 +29,7 @@ public class TambahMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTambahMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        token = MenuRepository.token.getValue();
         setupButtonSave();
     }
     private void setupButtonSave() {
@@ -42,7 +44,7 @@ public class TambahMenu extends AppCompatActivity {
             );
 
 
-                MenuRepository.addMenu(token.getValue().toString(), menuModel).observe(this, it -> {
+                MenuRepository.addMenu(token, menuModel).observe(this, it -> {
                     if (it != null) {
                         runOnUiThread(() -> {
                             Toast.makeText(getBaseContext(), "Menu Ditambahkan " + it.getNamaMenu(), Toast.LENGTH_SHORT).show();
