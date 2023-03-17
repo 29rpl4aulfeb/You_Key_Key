@@ -3,13 +3,19 @@ package www.smktelkom.example.myapplication.IniBaruTransaksi;
 import android.util.Log;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import www.smktelkom.example.myapplication.ApiClient;
 import www.smktelkom.example.myapplication.Meja.Meja;
+import www.smktelkom.example.myapplication.Meja.MejaValue;
 import www.smktelkom.example.myapplication.Menu.Menu;
 
 public class MenuRepository {
@@ -34,6 +40,26 @@ public class MenuRepository {
     public static void removeFromKeranjang(Menu menuModel) {
         keranjang.getValue().remove(menuModel);
         Log.d("MenuRepository", "observeSelectedMenu: " + keranjang.getValue().size());
+    }
+
+
+    public static LiveData<DetailTransaksiModel> getDetailTransaksi(String token, int idTransaksi) {
+        Call<DetailTransaksiModel> call = ApiClient.getuserService().getTransaksiById("Bearer "+token, idTransaksi);
+        call.enqueue(new Callback<DetailTransaksiModel>(){
+            @Override
+            public void onResponse(Call<DetailTransaksiModel> call, Response<DetailTransaksiModel> response) {
+                if(response.isSuccessful()){
+                 detailTransaksi.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DetailTransaksiModel> call, Throwable t) {
+
+            }
+        });
+
+        return detailTransaksi;
     }
 
 //    public static LiveData<ListMenuResponse> getAllMenus(String token) {

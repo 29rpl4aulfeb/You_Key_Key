@@ -11,16 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.function.Function;
 
+import kotlin.Unit;
 import www.smktelkom.example.myapplication.R;
 
 public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdapter.TransaksiListViewHolder> {
     private List<Transaksi> initransaksiList;
     private Context iniContext;
+    private final Function<Integer, Unit> observeSelectedTransaksi;
 
-    public TransaksiListAdapter(Context context, List<Transaksi> transaksiList){
+    public TransaksiListAdapter(Context context, List<Transaksi> transaksiList,  Function<Integer, Unit> observeSelectedTransaksi){
         iniContext = context;
         initransaksiList = transaksiList;
+        this.observeSelectedTransaksi = observeSelectedTransaksi;
     }
 
     @NonNull
@@ -54,6 +58,7 @@ public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdap
         public TextView tgl_transaksi;
         public TransaksiListViewHolder(@NonNull View itemView) {
             super(itemView);
+
             this.idTransaksi = itemView.findViewById(R.id.tvidTransaksi);
             idMeja = itemView.findViewById(R.id.idMeja);
             namaPelangan =  itemView.findViewById(R.id.namaPelanggan);
@@ -67,10 +72,13 @@ public class TransaksiListAdapter extends RecyclerView.Adapter<TransaksiListAdap
 //            }
             idTransaksi.setText("" +transaksiData.getId_transaksi());
 
+            itemView.getRootView().setOnClickListener(view -> observeSelectedTransaksi.apply(transaksiData.getId_transaksi()));
             idMeja.setText("" +transaksiData.getId_meja());
             namaPelangan.setText(transaksiData.getNama_pelanggan());
             status.setText("" + transaksiData.getStatus());
             tgl_transaksi.setText(transaksiData.getTgl_transaksi());
+
+
         }
     }
 

@@ -27,6 +27,11 @@ public interface userService {
    @GET("transaksi")
    Call<TransaksiValue> getTransaksi(@Header("Authorization") String authorization);
 
+   @GET("transaksi/{id_transaksi}")
+   Call<DetailTransaksiModel> getTransaksiById(
+           @Header("Authorization") String authorization,
+           @Path("id_transaksi") int id_transaksi);
+
    @GET("meja")
    Call<MejaValue> getMeja(@Header("Authorization") String authorization);
 
