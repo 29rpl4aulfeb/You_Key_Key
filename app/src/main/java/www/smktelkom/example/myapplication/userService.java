@@ -37,6 +37,12 @@ public interface userService {
    Call<MejaValue> getMeja(@Header("Authorization") String authorization);
 
    @FormUrlEncoded
+   @POST("meja")
+   Call<BasicResponse> addMeja(
+           @Header("Authorization") String bearerToken,
+           @Field("nomor_meja") String nama_meja
+   );
+   @FormUrlEncoded
    @POST("transaksi")
    Call<DetailTransaksiModel> addTransaksi(
            @Header("Authorization") String bearerToken,

@@ -14,11 +14,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import www.smktelkom.example.myapplication.ApiClient;
+import www.smktelkom.example.myapplication.BasicResponse;
 import www.smktelkom.example.myapplication.Meja.Meja;
 import www.smktelkom.example.myapplication.Meja.MejaValue;
 import www.smktelkom.example.myapplication.Menu.Menu;
 
 public class MenuRepository {
+    public static MutableLiveData<BasicResponse> addMejaResponse = new MutableLiveData<>();
     private static MutableLiveData<Menu> addMenu = new MutableLiveData<>();
     public static MutableLiveData<DetailTransaksiModel> detailTransaksi = new MutableLiveData<>();
     public static MutableLiveData<ArrayList<Menu>> keranjang = new MutableLiveData<>(new ArrayList<>());
@@ -78,6 +80,23 @@ public class MenuRepository {
             }
         });
         return addMenu;
+    }
+
+    public static void addMeja(String token, String namaMeja) {
+        Call<BasicResponse> call = ApiClient.getuserService().addMeja("Bearer " + token, namaMeja);
+        call.enqueue(new Callback<BasicResponse>() {
+            @Override
+            public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
+                if (response.isSuccessful()){
+                    addMejaResponse.postValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BasicResponse> call, Throwable t) {
+
+            }
+        });
     }
 
 //    public static LiveData<ListMenuResponse> getAllMenus(String token) {

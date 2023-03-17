@@ -21,6 +21,7 @@ import www.smktelkom.example.myapplication.IniBaruTransaksi.MenuRepository;
 import www.smktelkom.example.myapplication.Meja.Meja;
 import www.smktelkom.example.myapplication.Meja.MejaActivity;
 import www.smktelkom.example.myapplication.Meja.MejaValue;
+import www.smktelkom.example.myapplication.Meja.TambahMejaActivity;
 import www.smktelkom.example.myapplication.Menu.TambahMenu;
 import www.smktelkom.example.myapplication.Transaksi.Transaksi;
 import www.smktelkom.example.myapplication.Transaksi.TransaksiActivity;
@@ -65,6 +66,14 @@ Intent yeah = getIntent();
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, TambahMenu.class));
+            }
+        });
+
+        CardView btnAddMeja = findViewById(R.id.btnAddMeja);
+        btnAddMeja.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TambahMejaActivity.class));
             }
         });
 
